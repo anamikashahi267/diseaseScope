@@ -301,6 +301,14 @@ def handle_value_error(error):
     return jsonify({"error": str(error)}), 400
 
 
+@app.get("/")
+def home():
+    return {
+        "message": "DiseaseScope Backend is Running!",
+        "status": "success",
+    }
+
+
 @app.get("/api/health")
 def health():
     return jsonify({"status": "ok", "dataset": ANALYSIS["archive_name"]})
