@@ -6,13 +6,13 @@ import {
   Search, ShieldCheck, Sparkles, Upload, X,
 } from 'lucide-react'
 import UploadDataset from './UploadDataset.jsx'
+import { API_BASE } from './api.js'
 import {
   Bar, BarChart, CartesianGrid, Cell, Legend, Line, LineChart, Radar, RadarChart,
   PolarAngleAxis, PolarGrid, PolarRadiusAxis, ResponsiveContainer, Scatter,
   ScatterChart, Tooltip, XAxis, YAxis,
 } from 'recharts'
 
-const API = '/api'
 const NAV = [
   { to: '/dashboard', label: 'Dashboard', icon: BarChart3 },
   { to: '/clustering', label: 'Clustering analysis', icon: Layers3 },
@@ -79,7 +79,7 @@ async function getData(path) {
   const requestPath = query
     ? `${path}${path.includes('?') ? '&' : '?'}${query}`
     : path
-  const response = await fetch(`${API}${requestPath}`)
+  const response = await fetch(`${API_BASE}${requestPath}`)
   const data = await response.json()
   if (response.status === 410 && activeDatasetId) {
     sessionStorage.removeItem('diseasescope-active-dataset-id')

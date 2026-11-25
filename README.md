@@ -76,6 +76,8 @@ npm run dev
 
 Open the local URL printed by Vite (normally `http://localhost:5173`). Vite proxies `/api` requests to Flask on port 5000. Keep both terminals running while using the app; stop either server with **Ctrl+C** in its terminal.
 
+For the Render deployment, set the frontend service's `VITE_API_URL` environment variable to `https://diseasescope-2.onrender.com`. The frontend appends `/api` to this backend origin; when building for production without that variable, it defaults to the same Render backend. Vite embeds environment values at build time, so redeploy the frontend after changing the variable. Flask allows the deployed frontend origin and localhost development origins for API requests.
+
 ## Configure the default-data archive
 
 The IHME archive is excluded from Git. Set `DISEASESCOPE_DATA` in the same PowerShell terminal used to start Flask:

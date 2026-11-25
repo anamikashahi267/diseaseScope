@@ -131,7 +131,19 @@ def load_analysis():
 
 ANALYSIS = load_analysis()
 app = Flask(__name__)
-CORS(app, origins=r"https?://(localhost|127\.0\.0\.1)(:\d+)?")
+CORS(
+    app,
+    resources={
+        r"/api/.*": {
+            "origins": [
+                r"https://diseasescope-3\.onrender\.com",
+                r"https?://(localhost|127\.0\.0\.1)(:\d+)?",
+            ],
+            "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+            "allow_headers": ["Content-Type"],
+        }
+    },
+)
 register_upload_routes(app)
 
 

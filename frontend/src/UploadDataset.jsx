@@ -4,13 +4,13 @@ import {
   LoaderCircle, ShieldCheck, Trash2, Upload, X,
 } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { API_BASE } from './api.js'
 import './upload-dataset.css'
 
-const API = '/api'
 const MAX_FILE_SIZE = 20 * 1024 * 1024
 
 async function request(path, options = {}) {
-  const response = await fetch(`${API}${path}`, options)
+  const response = await fetch(`${API_BASE}${path}`, options)
   const contentType = response.headers.get('content-type') || ''
   const result = contentType.includes('application/json') ? await response.json() : await response.blob()
   if (!response.ok) {
